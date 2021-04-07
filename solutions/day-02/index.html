@@ -21,6 +21,35 @@
     <!-- 此处也是代码区 -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
+    // JSX 语法不需要加上引号 并且  在浏览器中会使用 babel.js 转换为 JavaScript代码
+    const jsxElement = <h1>I am a JSX element</h1>
+    const welcome = <h1>Welcome to 30 Days of React Challenge</h1>
+    const data = <small>Oct 2, 2020</small>
+
+    const title = <h2>Getting Started React</h2>
+
+    // JSX包含多个标签时 最外层有且只有一层父元素标签 否则不生效
+    const header = (
+        <header>
+            <h1>Welcome to 30 Days Of React</h1>
+            <h2>Getting Started React</h2>
+            <h3>JavaScript Library</h3>
+            <p>Asabeneh Yetayeh</p>
+            <small>Oct 2, 2020</small>
+        </header>
+    )
+    // 对JSX进行注释
+    {
+        /*
+      <header>
+          <h1>Welcome to 30 Days Of React</h1>
+          <h2>Getting Started React</h2>
+          <h3>JavaScript Library</h3>
+          <p>Asabeneh Yetayeh</p>
+          <small>Oct 2, 2020</small>
+        </header>
+      */
+      }
       // 从 HTML 中获取 root 节点
       const rootElement = document.querySelector('.root')
       // JSX 元素
