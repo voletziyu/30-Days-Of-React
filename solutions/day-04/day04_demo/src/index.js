@@ -174,13 +174,20 @@ const personAge = (
 // User Card Component
 const UserCard = () => (
   <div className='user-card'>
-    <img src={volet} alt='volet image' />
+    <img src={volet} alt='volet' />
     <h2>
       {author.firstName} {author.lastName}
     </h2>
   </div>
 )
-
+// jsx element ,button
+const Button = () => <button style={buttonStyles}>action</button>
+const buttonStyles = {
+  padding:'10px 20px',
+  background:'rgb(0, 255, 0)',
+  boder:'none',
+  boderRadius: 5
+}
 // JSX element, main
 const techs = ['HTML', 'CSS', 'JavaScript']
 const techsFormatted = techs.map((tech) => <li key={tech}>{tech}</li>)
@@ -201,6 +208,7 @@ const Main = () => (
         {result}
         {personAge}
       </div>
+      <Button />
       <UserCard />
     </div>
   </main>
@@ -226,6 +234,6 @@ const App = () => (
   </div>
 )
 
-  const rootElement = document.getElementById('root')
-  // we render the App component using the ReactDOM package
-  ReactDOM.render(<App />, rootElement)
+const rootElement = document.getElementById('root')
+// we render the App component using the ReactDOM package
+ReactDOM.render(<App />, rootElement)
