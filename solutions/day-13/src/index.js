@@ -7,31 +7,78 @@ import ReactDOM from "react-dom";
 // 类组件 事件
 class App extends Component {
   firstName = React.createRef()
+  lastName = React.createRef()
+  country = React.createRef()
+  title = React.createRef()
 
   handleSubmit = (e) => {
+    // e.preventDefault() 停止表单元素的默认行为, 特别刷新页面
     e.preventDefault()
+
     console.log(this.firstName.current.value)
-    console.log(this.firstName)
+    console.log(this.lastName.current.value)
+    console.log(this.title.current.value)
+    console.log(this.country.current.value)
+
+    const data = {
+      firstName: this.firstName.current.value,
+      lastName: this.lastName.current.value,
+      title: this.title.current.value,
+      country: this.country.current.value,
+    }
+    // 这是我们连接后端api的地方将数据发送到数据库
+    console.log(data)
   }
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
+        <h3>Add Student</h3>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='firstName'>First Name </label>
-          <input
-            type='text'
-            name='firstName'
-            onChange={this.handleChange}
-            placeholder='First Name'
-            ref={this.firstName}
-          />
-          <button type='submit'>Submit</button>
+          <div>
+            <input
+              type='text'
+              name='firstName'
+              placeholder='First Name'
+              ref={this.firstName}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <input
+              type='text'
+              name='lastName'
+              placeholder='Last Name'
+              ref={this.lastName}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <input
+              type='text'
+              name='country'
+              placeholder='Country'
+              ref={this.country}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <input
+              type='text'
+              name='title'
+              placeholder='Title'
+              ref={this.title}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <button className='btn btn-success'>Submit</button>
         </form>
-      </div >
-    );
+      </div>
+    )
   }
 }
+
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
