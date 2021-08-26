@@ -48,6 +48,10 @@ class App extends Component {
       css: false,
       javascript: false,
     },
+    touched: {
+      firstName: false,
+      lastName: false,
+    },
   };
   handleChange = (e) => {
     // 我们像这样去e.target.name, e.target.value 得到 name和value
@@ -64,6 +68,23 @@ class App extends Component {
     } else {
       this.setState({ [name]: value })
     }
+  }
+  handleBlur = (e) => {
+    const {name, value} = e.target
+    this.setState({ touched: { ...this.state.touched, [name]:true } })
+  }
+  validate = () => {
+    const errors =  {
+      validFirstName:'',
+    }
+
+    if (
+      (this.state.touched.firstName && this.state.firstName.length <3) ||
+      (this.state.touched.firstName && this.state.firstName.length >12)
+    ) {
+      errors.validFirstName = 'Firrst name must be between 2 and 12';
+    }
+    return errors;
   }
   handleSubmit = (e) => {
     // e.preventDefault() 停止表单元素的默认行为, 特别刷新页面
@@ -122,6 +143,7 @@ class App extends Component {
       gender,
       bio,
     } = this.state
+    const {validFirstName} = this.validate()
     return (
       <div className="App">
         <h3>Add Student</h3>
@@ -134,8 +156,10 @@ class App extends Component {
                 name='firstName'
                 value={firstName}
                 onChange={this.handleChange}
+                onBlur={this.handleBlur}
                 placeholder='First Name'
-              />
+              /> <br />
+              <small>{validFirstName}</small>
             </div>
             <div className='form-group'>
               <label htmlFor='lastName'>Last Name </label>
@@ -285,7 +309,7 @@ class App extends Component {
               onChange={this.handleChange}
               cols='120'
               rows='10'
-              placeholder='Write about yourself ...'   
+              placeholder='Write about yourself ...'
             />
           </div>
 
